@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:59:29 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/03/01 19:32:21 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:43:06 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static pid_t	get_server_pid(char *s)
 	return (pid);
 }
 
-void	set_sigaction(struct sigaction *act)
+static void	set_sigaction(struct sigaction *act)
 {
 	ft_bzero(act, sizeof(struct sigaction));
 	act->sa_handler = handler;
