@@ -6,13 +6,21 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:59:29 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/02/28 00:50:13 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:32:21 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exit_error.h"
+#include "send.h"
 #include <libft.h>
 #include <signal.h>
+#include <unistd.h>
+
+static void	handler(int sig)
+{
+	(void)sig;
+	write(STDOUT_FILENO, "OK\n", 3);
+}
 
 static pid_t	get_server_pid(char *s)
 {
@@ -32,44 +40,23 @@ static pid_t	get_server_pid(char *s)
 	return (pid);
 }
 
-static void	send_signal(pid_t pid, int signal)
+void	set_sigaction(struct sigaction *act)
 {
-	if (kill(pid, signal) < 0)
-		exit_error("kill failed", "");
-}
-
-static void	send_byte(pid_t pid, unsigned char c)
-{
-	int	i;
-
-	i = 0;
-	while (i < CHAR_BIT)
-	{
-		if (c & 0x01)
-			send_signal(pid, SIGUSR1);
-		else
-			send_signal(pid, SIGUSR2);
-		c >>= 1;
-	}
-}
-
-static void	send_msg(pid_t pid, char *msg)
-{
-	unsigned char	*bytes;
-	int				i;
-
-	bytes = (unsigned char *)msg;
-	i = 0;
-	while (bytes[i])
-	{
-		send_byte(pid, bytes[i]);
-		i++;
-	}
+	ft_bzero(act, sizeof(struct sigaction));
+	act->sa_handler = handler;
+	if (sigaction(SIGUSR1, act, NULL) == -1)
+		exit_error("sigaction failed", "");
 }
 
 int	main(int argc, char *argv[])
 {
+	struct sigaction	act;
+	pid_t				pid;
+
 	if (argc != 3)
 		exit_error("usage: client [PID] [MSG]", "");
-	send_msg(get_server_pid(argv[1]), argv[2]);
+	pid = get_server_pid(argv[1]);
+	set_sigaction(&act);
+	send_msg(pid, argv[2]);
+	pause();
 }
