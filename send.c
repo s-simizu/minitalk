@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:22:45 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/03/01 19:35:37 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:30:06 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 static void	send_signal(pid_t pid, int signal)
 {
-	if (kill(pid, signal) < 0)
+	if (kill(pid, signal) == -1)
 		exit_error("kill failed", "");
-	usleep(10);
+	usleep(1000);
 }
 
 static void	send_byte(pid_t pid, unsigned char c)

@@ -6,14 +6,15 @@
 #    By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 23:22:20 by sshimizu          #+#    #+#              #
-#    Updated: 2023/03/01 18:59:44 by sshimizu         ###   ########.fr        #
+#    Updated: 2023/03/01 19:58:16 by sshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minitalk
 SERVER = server
 CLIENT = client
-OBJS = server.o client.o send.o exit_error.o
+SERVER_OBJS = server.o exit_error.o
+CLIENT_OBJS = client.o send.o exit_error.o
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I libft
 LIB = libft/
@@ -24,11 +25,11 @@ all: $(NAME)
 
 $(NAME): $(SERVER) $(CLIENT)
 
-$(SERVER): server.o exit_error.o $(LIB)$(LIBFT)
-	$(CC) $(CFLAGS) $^ -o $@
+$(SERVER): $(SERVER_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(SERVER_OBJS) $(LIB)$(LIBFT) -o $@
 
-$(CLIENT): client.o send.o exit_error.o $(LIB)$(LIBFT)
-	$(CC) $(CFLAGS) $^ -o $@
+$(CLIENT): $(CLIENT_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(CLIENT_OBJS) $(LIB)$(LIBFT) -o $@
 
 server.o: server.c libft.h
 client.o: client.c libft.h
@@ -40,7 +41,8 @@ $(LIBFT):
 
 clean:
 	$(MAKE) fclean -C $(LIB)
-	rm -f $(OBJS)
+	rm -f $(SERVER_OBJS)
+	rm -f $(CLIENT_OBJS)
 
 fclean: clean
 	rm -f $(SERVER)
