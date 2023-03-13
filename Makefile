@@ -6,7 +6,7 @@
 #    By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 23:22:20 by sshimizu          #+#    #+#              #
-#    Updated: 2023/03/01 19:58:16 by sshimizu         ###   ########.fr        #
+#    Updated: 2023/03/14 06:10:38 by sshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ $(SERVER): $(SERVER_OBJS) $(LIBFT)
 $(CLIENT): $(CLIENT_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(CLIENT_OBJS) $(LIB)$(LIBFT) -o $@
 
+bonus: all
+
 server.o: server.c libft.h
 client.o: client.c libft.h
 send.o: exit_error.h
@@ -50,4 +52,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

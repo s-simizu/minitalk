@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:59:02 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/03/06 22:13:49 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/14 06:58:35 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	handler(int sig, siginfo_t *info, void *ucontext)
 	write(STDOUT_FILENO, (const void *)&c, 1);
 	if (c == 0)
 	{
-		usleep(10000);
+		usleep(1000);
 		kill(info->si_pid, SIGUSR1);
 	}
 	c = 0;
