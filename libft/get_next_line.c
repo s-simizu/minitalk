@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 11:15:54 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/02/24 05:17:22 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/14 08:52:40 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ char	*get_line(char *block, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[OPEN_MAX];
+	static char	*buffer[FOPEN_MAX];
 	char		*block;
 	char		*line;
 
-	if (fd < 0 || fd > OPEN_MAX - 1)
+	if (fd < 0 || fd > FOPEN_MAX - 1)
 		return (NULL);
 	if (!buffer[fd])
 	{
