@@ -6,11 +6,11 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:59:29 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/04/08 20:34:51 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/04/08 23:47:17 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exit_error.h>
+#include <exit.h>
 #include <send.h>
 #include <libft.h>
 #include <signal.h>
@@ -19,7 +19,6 @@
 static void	handler(int sig)
 {
 	(void)sig;
-	write(STDOUT_FILENO, "OK\n", 3);
 }
 
 static pid_t	get_server_pid(char *s)
@@ -58,5 +57,5 @@ int	main(int argc, char *argv[])
 	pid = get_server_pid(argv[1]);
 	set_sigaction(&act);
 	send_msg(pid, argv[2]);
-	pause();
+	ft_printf("OK\n");
 }
