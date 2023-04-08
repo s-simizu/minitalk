@@ -6,7 +6,7 @@
 #    By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 23:22:20 by sshimizu          #+#    #+#              #
-#    Updated: 2023/04/08 23:42:44 by sshimizu         ###   ########.fr        #
+#    Updated: 2023/04/09 00:37:00 by sshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,9 @@ $(CLIENT): $(CLIENT_OBJS) $(LIBFT)
 
 bonus: all
 
-server.o: libft.h info.h bits.h
-client.o: libft.h
-send.o: exit.h bits.h
+server.o: bits.h exit.h info.h libft.h
+client.o: exit.h send.h libft.h
+send.o: bits.h exit.h
 exit_error.o: libft.h
 
 $(LIBFT):

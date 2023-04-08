@@ -6,12 +6,11 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:59:02 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/04/09 00:20:01 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/04/09 00:36:21 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <bits.h>
-#include <errno.h>
 #include <exit.h>
 #include <info.h>
 #include <libft.h>
