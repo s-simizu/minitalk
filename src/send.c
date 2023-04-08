@@ -6,11 +6,11 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:22:45 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/03/14 06:58:01 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/04/08 21:07:18 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit_error.h"
+#include <exit_error.h>
 #include <limits.h>
 #include <signal.h>
 #include <unistd.h>

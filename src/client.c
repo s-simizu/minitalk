@@ -6,12 +6,12 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:59:29 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/03/01 19:43:06 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/04/08 20:34:51 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit_error.h"
-#include "send.h"
+#include <exit_error.h>
+#include <send.h>
 #include <libft.h>
 #include <signal.h>
 #include <unistd.h>

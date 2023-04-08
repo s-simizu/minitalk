@@ -6,14 +6,16 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:59:02 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/03/14 06:58:35 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/04/08 21:07:59 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit_error.h"
 #include <errno.h>
+#include <exit_error.h>
 #include <libft.h>
 #include <signal.h>
+
+volatile sig_atomic_t	g_kill_error;
 
 static void	handler(int sig, siginfo_t *info, void *ucontext)
 {
@@ -32,7 +34,8 @@ static void	handler(int sig, siginfo_t *info, void *ucontext)
 	if (c == 0)
 	{
 		usleep(1000);
-		kill(info->si_pid, SIGUSR1);
+		if (kill(info->si_pid, SIGUSR1) == -1)
+			g_kill_error = 1;
 	}
 	c = 0;
 	bit = 0;
@@ -55,6 +58,11 @@ int	main(void)
 
 	ft_printf("%d\n", getpid());
 	set_sigaction(&act);
+	g_kill_error = 0;
 	while (1)
+	{
 		pause();
+		if (g_kill_error)
+			exit_error("kill failed", "");
+	}
 }

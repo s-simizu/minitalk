@@ -6,20 +6,22 @@
 #    By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 23:22:20 by sshimizu          #+#    #+#              #
-#    Updated: 2023/03/14 06:10:38 by sshimizu         ###   ########.fr        #
+#    Updated: 2023/04/08 20:35:54 by sshimizu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minitalk
 SERVER = server
 CLIENT = client
-SERVER_OBJS = server.o exit_error.o
-CLIENT_OBJS = client.o send.o exit_error.o
+SERVER_SRCS = server.c exit_error.c
+CLIENT_SRCS = client.c send.c exit_error.c
+SERVER_OBJS = $(SERVER_SRCS:.c=.o)
+CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I libft
+CFLAGS = -Wall -Wextra -Werror -Ilibft -Iinclude
 LIB = libft/
 LIBFT = libft.a
-VPATH = libft
+VPATH = libft src include
 
 all: $(NAME)
 
